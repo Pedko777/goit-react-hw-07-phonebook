@@ -32,21 +32,27 @@ export default {
   addContactRequest,
   addContactSuccess,
   addContactError,
+
   fetchContactsRequest,
   fetchContactsSuccess,
   fetchContactsError,
+
   deleteContactRequest,
   deleteContactSuccess,
   deleteContactError,
+
   // addIdEditContactRequest,
   // addIdEditContactSuccess,
   // addIdEditContactError,
+
   // deleteIdEditContactRequest,
   // deleteIdEditContactSuccess,
   // deleteIdEditContactError,
+
   changeContactRequest,
   changeContactSuccess,
   changeContactError,
+
   changeFilter,
   // changeContact,
   addIdEditContact,

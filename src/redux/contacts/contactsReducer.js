@@ -11,7 +11,7 @@ const onDeleteContact = (state, action) => {
 };
 
 const onChangeContact = (state, action) => {
-  console.log(action.payload.contact);
+  // console.log(action.payload.contact);
   return state.map(contact => {
     return contact.id === action.payload.contact.id
       ? {
@@ -42,6 +42,8 @@ const onDeleteIdEditContact = (state, { payload }) => {
 const idEditContact = createReducer([], {
   [contactsAction.addIdEditContact]: onAddIdEditContact,
   [contactsAction.deleteIdEditContact]: onDeleteIdEditContact,
+  // [contactsAction.addIdEditContactSuccess]: onAddIdEditContact,
+  // [contactsAction.deleteIdEditContactSuccess]: onDeleteIdEditContact,
 });
 
 const onChangeFilter = (state, { payload }) => {

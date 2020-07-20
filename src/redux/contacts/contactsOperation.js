@@ -56,9 +56,9 @@ const changeContact = (id, name, number) => (dispatch)=> {
 //   dispatch(contactsAction.deleteIdEditContactRequest());
 
 //   axios
-    // .delete(`${db}/${id}`)
-    // .then(() => dispatch(contactsAction.deleteContactSuccess(id)))
-    // .catch(error => dispatch(contactsAction.deleteContactError(error)));
+//     .delete(`${db}/${id}`)
+//     .then(() => dispatch(contactsAction.deleteContactSuccess(id)))
+//     .catch(error => dispatch(contactsAction.deleteContactError(error)));
 // };
 
 export default {
