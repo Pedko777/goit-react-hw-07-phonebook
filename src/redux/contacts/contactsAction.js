@@ -1,35 +1,54 @@
 import { createAction } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 
-const addContact = createAction("contacts/ADD_CONTACT", (name, number) => ({
-  payload: {
-    contact: { id: uuidv4(), name, number },
-  },
-}));
+const addContactRequest = createAction('contacts/ADD_REQUEST');
+const addContactSuccess = createAction('contacts/ADD_SUCCESS');
+const addContactError = createAction('contacts/ADD_ERROR');
 
-const deleteContact = createAction("contacts/deleteContact");
+const fetchContactsRequest = createAction('contacts/FETCH_REQUEST');
+const fetchContactsSuccess = createAction('contacts/FETCH_SUCCESS');
+const fetchContactsError = createAction('contacts/FETCH_ERROR');
 
-const changeFilter = createAction("contacts/changeFilter");
+const deleteContactRequest = createAction('contacts/DELETE_REQUEST');
+const deleteContactSuccess = createAction('contacts/DELETE_SUCCESS');
+const deleteContactError = createAction('contacts/DELETE_ERROR');
 
-const changeContact = createAction("contacts/changeContact",  (idContactChange, changeName, changeNumber) => ({
-  payload: {
-    contact: {
-      id: idContactChange,
-      name: changeName,
-      number: changeNumber,
-    },
-  },
-}));
+const changeFilter = createAction('contacts/changeFilter');
 
-const addIdEditContact = createAction("contacts/addIdEditContact");
+const changeContactRequest = createAction ('contacts/CHANGE_CONTACT_REQUEST')
+const changeContactSuccess = createAction ('contacts/CHANGE_CONTACT_SUCCESS')
+const changeContactError = createAction ('contacts/CHANGE_CONTACT_ERROR')
 
-const deleteIdEditContact = createAction("contacts/deleteIdEditContact");
+const addIdEditContact = createAction('contacts/addIdEditContact');
+// const addIdEditContactRequest = createAction('contacts/ADD_ID_EDIT_CONTACT_REQUEST');
+// const addIdEditContactSuccess = createAction('contacts/ADD_ID_EDIT_CONTACT_SUCCESS');
+// const addIdEditContactError = createAction('contacts/ADD_ID_EDIT_CONTACT_ERROR');
+
+const deleteIdEditContact = createAction('contacts/deleteIdEditContact');
+// const deleteIdEditContactRequest = createAction('contacts/DELETE_ID_EDIT_CONTACT_REQUEST');
+// const deleteIdEditContactSuccess = createAction('contacts/DELETE_ID_EDIT_CONTACT_SUCCESS');
+// const deleteIdEditContactError = createAction('contacts/DELETE_ID_EDIT_CONTACT_ERROR');
 
 export default {
-  addContact,
-  deleteContact,
+  addContactRequest,
+  addContactSuccess,
+  addContactError,
+  fetchContactsRequest,
+  fetchContactsSuccess,
+  fetchContactsError,
+  deleteContactRequest,
+  deleteContactSuccess,
+  deleteContactError,
+  // addIdEditContactRequest,
+  // addIdEditContactSuccess,
+  // addIdEditContactError,
+  // deleteIdEditContactRequest,
+  // deleteIdEditContactSuccess,
+  // deleteIdEditContactError,
+  changeContactRequest,
+  changeContactSuccess,
+  changeContactError,
   changeFilter,
-  changeContact,
+  // changeContact,
   addIdEditContact,
   deleteIdEditContact,
 };

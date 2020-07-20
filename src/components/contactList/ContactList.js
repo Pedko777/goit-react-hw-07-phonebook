@@ -4,7 +4,7 @@ import ContactListItem from '../contactListItem/ContactListItem';
 import { connect } from 'react-redux';
 
 const ContactList = ({ contacts }) => {
-  console.log(contacts);
+  // console.log(contacts);
   return (
     <ul className={styles.contactList}>
       {contacts.map(contact => (
@@ -16,6 +16,8 @@ const ContactList = ({ contacts }) => {
 
 
 const mapStateToProps = state => {
+  // console.log(state)
+
   const filter = state.contactsRoot.filter;
   return {
     contacts: state.contactsRoot.contacts.filter(contact =>

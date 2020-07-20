@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './contactForm.module.css';
 import { connect } from 'react-redux';
-import contactsAction from '../../redux/contacts/contactsAction';
+import contactsOperation from '../../redux/contacts/contactsOperation';
 
 class ConatctForm extends Component {
   state = {
@@ -63,7 +63,7 @@ class ConatctForm extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     onSubmit: (name, number) =>
-      dispatch(contactsAction.addContact(name, number)),
+      dispatch(contactsOperation.addContact(name, number)),
   };
 };
 

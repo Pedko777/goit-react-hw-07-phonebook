@@ -1,18 +1,9 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import contactsAction from "./contactsAction"
-
+import contactsAction from './contactsAction';
 
 const onAddContact = (state, action) => {
-  if (
-    state &&
-    state.find(contact => action.payload.contact.name === contact.name)
-  ) {
-    alert('User with this name is already exist');
-    return state;
-  } else {
-    return [...state, action.payload.contact];
-  }
+  return [...state, action.payload];
 };
 
 const onDeleteContact = (state, action) => {
@@ -20,26 +11,31 @@ const onDeleteContact = (state, action) => {
 };
 
 const onChangeContact = (state, action) => {
+  console.log(action.payload.contact);
   return state.map(contact => {
-    return contact.id === action.payload
-    ? { ...contact, name: action.payload.name, number: action.payload.number }
-    : contact;
-  }
-  );
+    return contact.id === action.payload.contact.id
+      ? {
+          ...contact,
+          name: action.payload.contact.name,
+          number: action.payload.contact.number,
+        }
+      : contact;
+  });
 };
 
-const contacts = createReducer ([], {
-  [contactsAction.addContact]: onAddContact,
-  [contactsAction.deleteContact]: onDeleteContact,
-  [contactsAction.changeContact]: onChangeContact,
+const contacts = createReducer([], {
+  [contactsAction.fetchContactsSuccess]:(state, action) => action.payload,
+  [contactsAction.addContactSuccess]: onAddContact,
+  [contactsAction.deleteContactSuccess]: onDeleteContact,
+  [contactsAction.changeContactSuccess]: onChangeContact,
+  // [contactsAction.changeContact]: onChangeContact,
 });
 
-
-const onAddIdEditContact = (state, {payload}) => {
-  return [...state, payload]
+const onAddIdEditContact = (state, { payload }) => {
+  return [...state, payload];
 };
 
-const onDeleteIdEditContact =(state, {payload}) => {
+const onDeleteIdEditContact = (state, { payload }) => {
   return state.filter(id => id !== payload);
 };
 
@@ -48,16 +44,31 @@ const idEditContact = createReducer([], {
   [contactsAction.deleteIdEditContact]: onDeleteIdEditContact,
 });
 
+const onChangeFilter = (state, { payload }) => {
+  // console.log(payload);
+  return payload;
+};
 
-const onChangeFilter = (state, {payload}) => payload;
-
-const filter = createReducer ('', {
+const filter = createReducer('', {
   [contactsAction.changeFilter]: onChangeFilter,
 });
 
+const loading = createReducer(false, {
+  [contactsAction.fetchContactsRequest]:() => true,
+  [contactsAction.fetchContactsSuccess]:()=> false,
+  [contactsAction.fetchContactsError]:()=> false,
+  [contactsAction.addContactRequest]: () => true,
+  [contactsAction.addContactSuccess]: () => false,
+  [contactsAction.addContactsError]: () => false,
+  [contactsAction.deleteContactRequest]:()=> true,
+  [contactsAction.deleteContactSuccess]:()=> false,
+  [contactsAction.deleteContactError]:()=> false,
+
+})
 
 export default combineReducers({
   contacts,
   idEditContact,
   filter,
+  loading,
 });
