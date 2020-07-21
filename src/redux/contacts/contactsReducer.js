@@ -14,17 +14,13 @@ const onChangeContact = (state, action) => {
   // console.log(action.payload.contact);
   return state.map(contact => {
     return contact.id === action.payload.contact.id
-      ? {
-          ...contact,
-          name: action.payload.contact.name,
-          number: action.payload.contact.number,
-        }
+      ? action.payload.contact 
       : contact;
   });
 };
 
 const contacts = createReducer([], {
-  [contactsAction.fetchContactsSuccess]:(state, action) => action.payload,
+  [contactsAction.fetchContactsSuccess]: (state, action) => action.payload,
   [contactsAction.addContactSuccess]: onAddContact,
   [contactsAction.deleteContactSuccess]: onDeleteContact,
   [contactsAction.changeContactSuccess]: onChangeContact,
@@ -56,17 +52,19 @@ const filter = createReducer('', {
 });
 
 const loading = createReducer(false, {
-  [contactsAction.fetchContactsRequest]:() => true,
-  [contactsAction.fetchContactsSuccess]:()=> false,
-  [contactsAction.fetchContactsError]:()=> false,
+  [contactsAction.fetchContactsRequest]: () => true,
+  [contactsAction.fetchContactsSuccess]: () => false,
+  [contactsAction.fetchContactsError]: () => false,
   [contactsAction.addContactRequest]: () => true,
   [contactsAction.addContactSuccess]: () => false,
   [contactsAction.addContactsError]: () => false,
-  [contactsAction.deleteContactRequest]:()=> true,
-  [contactsAction.deleteContactSuccess]:()=> false,
-  [contactsAction.deleteContactError]:()=> false,
-
-})
+  [contactsAction.deleteContactRequest]: () => true,
+  [contactsAction.deleteContactSuccess]: () => false,
+  [contactsAction.deleteContactError]: () => false,
+  [contactsAction.changeContactRequest]:()=> true,
+  [contactsAction.changeContactSuccess]: ()=> false,
+  [contactsAction.changeContactError]: ()=> false,
+});
 
 export default combineReducers({
   contacts,

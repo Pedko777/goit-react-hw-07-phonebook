@@ -8,6 +8,8 @@ import Logo from './components/logo/Logo';
 import themeAction from './redux/theme/themeAction';
 import themeSwitch from './services/themeSwitch';
 import contactsOperation from "./redux/contacts/contactsOperation"
+import contactsSelectors from "./redux/contacts/contactsSelectors"
+
 
 class App extends Component {
   componentDidMount (){
@@ -43,7 +45,7 @@ const mapStateToProps = state => {
   // console.log(state.contactsRoot.loading);
   return {
     theme: state.theme,
-    isLoadingContact: state.contactsRoot.loading,
+    isLoadingContact: contactsSelectors.getLoading(state),
   };
 };
 

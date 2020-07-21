@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styles from './contactListItem.module.css';
 import contactsOperation from '../../redux/contacts/contactsOperation';
 import contactsAction from '../../redux/contacts/contactsAction';
+import contactsSelectors from '../../redux/contacts/contactsSelectors';
 
 class ContactListItem extends Component {
   state = {
@@ -88,7 +89,6 @@ class ContactListItem extends Component {
 const mapStateToProps = (state, { id }) => {
   const arrayIdsEditContact = state.contactsRoot.idEditContact;
   const isShowForm = arrayIdsEditContact.some(idEdit => idEdit === id);
-  // console.log(state.contactsRoot.idEditContact)
   return {
     isShowForm,
   };
@@ -97,14 +97,10 @@ const mapStateToProps = (state, { id }) => {
 const mapDispatchToProps = (dispatch, { id }) => {
   return {
     deleteContact: () => dispatch(contactsOperation.deleteContact(id)),
-    // changeContact: (name, number) =>
-    //   dispatch(contactsAction.changeContact(id, name, number)),
     changeContact: (name, number) =>
-    dispatch(contactsOperation.changeContact(id, name, number)),
+      dispatch(contactsOperation.changeContact(id, name, number)),
     addIdEditContact: () => dispatch(contactsAction.addIdEditContact(id)),
-    // addIdEditContact: () => dispatch(contactsOperation.addIdEditContact(id)),
     deleteIdEditContact: () => dispatch(contactsAction.deleteIdEditContact(id)),
-    // deleteIdEditContact: () => dispatch(contactsOperation.deleteIdEditContact(id)),
   };
 };
 
