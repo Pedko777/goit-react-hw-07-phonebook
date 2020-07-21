@@ -1,16 +1,9 @@
-import themeTypes from './themeTypes';
+  
+import { createReducer } from '@reduxjs/toolkit';
+import themeAction from "./themeAction"
 
-const themeReducer = (state = 'light', action) => {
-  switch (action.type) {
-    case themeTypes.CHANGE_THEME:
-      if (state && state === 'light') {
-        return 'dark';
-      } else {
-        return 'light';
-      }
-    default:
-      return state;
-  }
-};
+const themeReducer = createReducer(true, {
+  [themeAction.changeTheme]: state => !state,
+});
 
-  export default themeReducer;
+export default themeReducer;

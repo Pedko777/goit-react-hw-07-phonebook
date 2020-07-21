@@ -1,10 +1,5 @@
-import themeTypes from './themeTypes';
+import {createAction} from "@reduxjs/toolkit"
 
-const changeTheme = (theme) => ({
-  type: themeTypes.CHANGE_THEME,
-  payload: {
-    theme,
-  },
-});
+const changeTheme = createAction('theme/changeTheme');
 
 export default { changeTheme };

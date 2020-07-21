@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import styles from './contactListItem.module.css';
-import contactsOperation from '../../redux/contacts/contactsOperation';
-import contactsAction from '../../redux/contacts/contactsAction';
-import contactsSelectors from '../../redux/contacts/contactsSelectors';
+
 
 class ContactListItem extends Component {
   state = {
@@ -86,22 +83,4 @@ class ContactListItem extends Component {
   }
 }
 
-const mapStateToProps = (state, { id }) => {
-  const arrayIdsEditContact = state.contactsRoot.idEditContact;
-  const isShowForm = arrayIdsEditContact.some(idEdit => idEdit === id);
-  return {
-    isShowForm,
-  };
-};
-
-const mapDispatchToProps = (dispatch, { id }) => {
-  return {
-    deleteContact: () => dispatch(contactsOperation.deleteContact(id)),
-    changeContact: (name, number) =>
-      dispatch(contactsOperation.changeContact(id, name, number)),
-    addIdEditContact: () => dispatch(contactsAction.addIdEditContact(id)),
-    deleteIdEditContact: () => dispatch(contactsAction.deleteIdEditContact(id)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactListItem);
+export default ContactListItem;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import styles from './contactForm.module.css';
 import { connect } from 'react-redux';
 import contactsOperation from '../../redux/contacts/contactsOperation';

@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './contactList.module.css';
-import ContactListItem from '../contactListItem/ContactListItem';
 import { connect } from 'react-redux';
-import contactsSelectors from "../../redux/contacts/contactsSelectors"
+import contactsSelectors from "../../redux/contacts/contactsSelectors";
+import ContactListItem from "../contactListItem/ContactListIemContainer"
 
 const ContactList = ({ contacts }) => {
   // console.log(contacts);

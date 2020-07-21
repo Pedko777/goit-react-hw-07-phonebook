@@ -1,57 +1,38 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import React from 'react';
+
+import themeSwitch from './services/themeSwitch';
 import ConatctForm from './components/conactForm/ContactForm';
 import ContactList from './components/contactList/ContactList';
 import Filter from './components/filter/Filter';
 import styles from './App.css';
 import Logo from './components/logo/Logo';
-import themeAction from './redux/theme/themeAction';
-import themeSwitch from './services/themeSwitch';
-import contactsOperation from "./redux/contacts/contactsOperation"
-import contactsSelectors from "./redux/contacts/contactsSelectors"
 
+const App = ({ contacts, theme, changeTheme, isLoadingContact }) => {
 
-class App extends Component {
-  componentDidMount (){
-    this.props.onFetchContacts()
-  }
-render() {
-  const { theme, toggleTheme, isLoadingContact } = this.props
+  console.log({theme, changeTheme})
+  let themeState = 'light';
+  theme ? (themeState = 'light') : (themeState = 'dark');
+  
   return (
     <div
       style={{
-        color: themeSwitch[theme].fontColor,
-        background: themeSwitch[theme].bodybg,
+        color: themeSwitch[themeState].fontColor,
+        background: themeSwitch[themeState].bodybg,
       }}
     >
       <div>
         <>
           <Logo />
           {isLoadingContact && <h2>Loading...</h2>}
-          <button onClick={toggleTheme}>Change Theme</button>
+          <button onClick={changeTheme}>Change Theme</button>
         </>
       </div>
       <ConatctForm />
       <h2 className={styles.sectionTitle}>Contacts</h2>
-      <Filter />
+      {contacts && contacts.length > 1 && <Filter />}
       <ContactList />
     </div>
   );
-}
-  
 };
 
-const mapStateToProps = state => {
-  // console.log(state.contactsRoot.loading);
-  return {
-    theme: state.theme,
-    isLoadingContact: contactsSelectors.getLoading(state),
-  };
-};
-
-const mapDispatchToProps = {
-  toggleTheme: themeAction.changeTheme,
-  onFetchContacts: contactsOperation.fetchContacts
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
